@@ -60,9 +60,9 @@ struct ContentView: View {
                     audioPlayer?.currentTime = newValue
                 }), in: 0...duration)
             }
-//            if let duration = audioPlayer?.duration {
-//                Text("\(formatTime(_time: currentTime)) / \(formatTime(_time: duration))")
-//            }
+            if let duration = audioPlayer?.duration {
+                Text("\(formatTime(currentTime)) / \(formatTime( duration))")
+            }
             Button {
                 print("Hola!")
                 let utterance = AVSpeechUtterance(string: """
@@ -124,11 +124,12 @@ struct ContentView: View {
         isPlay.toggle()
         audioDelegate.finishPlay = false
     }
-//    func formatTime(_time: TimeInterval) -> String{
-//        let minutes = Int(time) / 60
-//        let seconds = Int(time) % 60
-//        return String(format: "%02d:%02d", minutes, seconds)
-//    }
+    func formatTime(_ time: TimeInterval) -> String{
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+        
+    }
     func restart(){
         musicPlayer()
         audioPlayer?.currentTime = 0
